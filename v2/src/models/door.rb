@@ -3,7 +3,7 @@ class Door
 
   def initialize(params = {})
     @state = params.fetch(:state, 'close')
-    @whats_behind = params.fetch(:whats_behind, 'ship')
+    @whats_behind = params.fetch(:whats_behind, 'sheep')
   end
 
   def set_id(id)

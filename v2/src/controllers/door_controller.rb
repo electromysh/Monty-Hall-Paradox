@@ -1,4 +1,4 @@
-require_relative 'model'
+require_relative '../models/door'
 
 def prepare_doors()
     @doors = Array.new(3){Door.new}

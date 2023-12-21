@@ -1,5 +1,5 @@
-require_relative 'src/view'
-require_relative 'src/controller'
+require_relative '../src/views/view'
+require_relative '../src/controllers/door_controller'
 
 prepare_doors()
 greetings()

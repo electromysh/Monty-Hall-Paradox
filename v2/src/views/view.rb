@@ -1,5 +1,5 @@
-require_relative 'model'
-require_relative 'controller'
+require_relative '../models/door'
+require_relative '../controllers/door_controller'
 
 def greetings()
   p "WELCOME TO THE GAME!"
