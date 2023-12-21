@@ -13,10 +13,8 @@ def comment()
     p "YOU CHOOSE A DOOR # #{@selected_door.id}"
 end
 
-def open_empty_door()
-  door = @doors.each.select{|door| door.whats_behind != 'auto' && door != @selected_door}.sample
-  door.set_state('open')
-  p "SHOW YOU A DOOR # #{door.id}. THERE IS #{door.whats_behind}"
+def report()
+  p "SHOW YOU A DOOR # #{@opened_door.id}. THERE IS #{@opened_door.whats_behind}"
 end
 
 def ask()
@@ -24,8 +22,7 @@ def ask()
 end
 
 def message()
-    subject = @selected_door.whats_behind
-    if subject == 'auto' 
+    if @success
       p "YOU WIN!!! CONGRATULATIONS!!!"
     else
       p "YOU LOSE!!! TRY ONCE MORE..."

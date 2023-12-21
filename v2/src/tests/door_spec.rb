@@ -1,5 +1,5 @@
 require_relative '../models/door'
-require 'rspec/autorun'
+# require 'rspec/autorun'
 
 describe Door do
     # before(:all) do
@@ -12,20 +12,31 @@ describe Door do
             expect(door.whats_behind).to eq 'sheep'
             expect(door.state).to eq 'close'
         end
+
+        it "Should correctly set a Door" do
+            door = Door.new
+
+            expect { 
+                door.set_id(1) 
+            }.to change{ door.id }.from(nil).to(1)
+
+            expect {
+                door.set_state('open')
+            }.to change{ door.state }.from('close').to('open')
+
+            expect {
+                door.set_whats_behind('auto')
+            }.to change{ door.whats_behind }.from('sheep').to('auto')
+        end
+
+        # it "Should correctly prepare doors" do
+        #     expect {
+        #         prepare_doors()
+        #     }.
+        # end
     end
 
     # let(:door) { Door.new }
-
-    # setters tests
-    # it "set id of the door" do
-    #     expect{ door.set_id(1) }.to change(door, :id).by(1)
-    # end
-    # it "set what's behind the door" do
-    #     expect{ door.set_whats_behind('auto') }.to change(door, :whats_behind).by('auto')
-    # end
-    # it "set state of the door" do
-    #     expect { door.set_state('open') }.to change(door, :state).by('open')
-    # end
 
     # doors preparing tests
 

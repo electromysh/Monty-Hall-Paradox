@@ -10,8 +10,8 @@ class Door
     @id = id
   end
 
-  def set_whats_behind(subject)
-    @whats_behind = subject
+  def set_whats_behind(stuff)
+    @whats_behind = stuff
   end
 
   def set_state(state)
