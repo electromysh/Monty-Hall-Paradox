@@ -1,20 +1,20 @@
-require_relative '../models/door'
-require_relative '../controllers/door_controller'
+require_relative '../models/box'
+require_relative '../controllers/box_controller'
 
 def greetings()
   p "WELCOME TO THE GAME!"
 end
 
 def call()
-  p "CHOOSE A DOOR:"
+  p "CHOOSE A BOX:"
 end
 
 def comment()
-    p "YOU CHOOSE A DOOR # #{@selected_door.id}"
+    p "YOU CHOOSE A BOX # #{ @boxes.find_index(@selected_box) + 1 }"
 end
 
 def report()
-  p "SHOW YOU A DOOR # #{@opened_door.id}. THERE IS #{@opened_door.whats_behind}"
+  p "SHOW YOU A DOOR # #{ @boxes.find_index(@box_to_open) + 1 }. THERE IS #{ @box_to_open.content.class }"
 end
 
 def ask()

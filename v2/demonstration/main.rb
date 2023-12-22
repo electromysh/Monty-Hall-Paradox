@@ -1,12 +1,12 @@
 require_relative '../src/views/view'
-require_relative '../src/controllers/door_controller'
+require_relative '../src/controllers/box_controller'
 
-prepare_doors()
+prepare_boxes()
 greetings()
 call()
-select_door(gets.to_i)
+select_box(gets.to_i)
 comment()
-open_empty_door()
+open_empty_box()
 report()
 ask()
 change?(gets.chomp)

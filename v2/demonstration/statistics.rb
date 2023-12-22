@@ -1,5 +1,5 @@
 require_relative '../src/views/view'
-require_relative '../src/controllers/door_controller'
+require_relative '../src/controllers/box_controller'
 
 class Numeric
     def percent_of(n)
@@ -12,10 +12,10 @@ no_count = 0
 
 limit = 500
 
-def monty_hall(door_number, change)
-    prepare_doors()
-    select_door(door_number)
-    open_empty_door()
+def monty_hall(box_number, change)
+    prepare_boxes()
+    select_box(box_number)
+    open_empty_box()
     change?(change)
     check_answer()
     result()

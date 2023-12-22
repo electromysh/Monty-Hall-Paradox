@@ -1,4 +1,4 @@
-require_relative 'model'
+require_relative 'door_controller'
 
 def greetings()
   p "WELCOME TO THE GAME!"

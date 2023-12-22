@@ -1,4 +1,4 @@
-require_relative '../src/model'
+require_relative '../src/door_controller'
 require_relative '../src/view'
 
 prepare_doors()
