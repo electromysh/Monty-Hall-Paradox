@@ -2,8 +2,14 @@ def prepare_doors()
     @doors = [true, false, false].shuffle
 end
 
-def select_door(id)
-    @selected_door_id = id - 1
+def select_door(number)
+    correct_input_numbers = [1, 2, 3]
+    until correct_input_numbers.member? number do
+      warning()
+      number = gets.to_i
+    end
+    
+    @selected_door_id = number - 1
     @right_door_selected = @doors[@selected_door_id]
 end
 

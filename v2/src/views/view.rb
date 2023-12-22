@@ -6,7 +6,11 @@ def greetings()
 end
 
 def call()
-  p "CHOOSE A BOX:"
+  p "CHOOSE A BOX (1, 2 or 3):"
+end
+
+def warning()
+  p "INCORRECT NUMBER! ENTER 1, 2 OR 3" 
 end
 
 def comment()

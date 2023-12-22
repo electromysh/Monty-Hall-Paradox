@@ -25,7 +25,13 @@ describe Box do
             sheep = Sheep.new()
             expect { 
                 box.put_stuff(sheep)
-            }.to change{ box.content }.to(sheep)
+            }.to change{ box.content }.from(nil).to(sheep)
+
+            auto = Auto.new()
+            box = Box.new(content: auto)
+            expect { 
+                box.put_stuff(sheep)
+            }.to change{ box.content }.from(auto).to(sheep)
         end
 
         it "Should open a box" do
@@ -49,6 +55,11 @@ describe Box do
 
             # ожидаю что при выборе выберется нужная коробка
             it "Should correctly select a box by number" do
+
+            end
+
+            it "Should not continue game if selected box number is incorrect" do
+                
             end
 
             # ожидаю что при открывании пустой открывается не та которая выбрана и не та где авто

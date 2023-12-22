@@ -5,7 +5,11 @@ def greetings()
 end
 
 def call()
-  p "CHOOSE A DOOR:"
+  p "CHOOSE A DOOR (1, 2 OR 3):"
+end
+
+def warning()
+  p "INCORRECT NUMBER! ENTER 1, 2 OR 3" 
 end
 
 def comment()

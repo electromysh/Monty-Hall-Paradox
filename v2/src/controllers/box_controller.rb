@@ -1,5 +1,6 @@
 require_relative '../models/box'
 require_relative '../models/stuff'
+require_relative '../views/view'
 
 def prepare_boxes()
     @boxes = Array.new(3){Box.new}
@@ -10,7 +11,13 @@ def prepare_boxes()
 end
 
 def select_box(number)
-  @selected_box = @boxes[number - 1]
+  correct_input_numbers = [1, 2, 3]
+  until correct_input_numbers.member? number do
+    warning()
+    number = gets.to_i
+  end
+  
+  @selected_box = @boxes[number - 1] 
 end
 
 def open_empty_box()
