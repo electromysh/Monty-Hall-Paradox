@@ -28,11 +28,11 @@ def find_box_to_open()
   @box_to_open = @boxes.each.select{|box| box.content.class != Auto && box != @selected_box}.sample
 end
 
-def open_empty_box(box)
+def open_box(box)
     box.is_open = true
 end
 
-def change(answer)
+def change_choice(answer)
     if answer == "y"
         box = @boxes.select{|box| !box.is_open && box != @selected_box}[0]
         number_of_box = @boxes.find_index(box) + 1

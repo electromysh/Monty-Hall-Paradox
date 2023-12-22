@@ -1,8 +1,10 @@
 require_relative '../src/views/view'
 require_relative '../src/controllers/box_controller'
 
-def percent_of(n)
-    self.to_f / n.to_f * 100.0
+class Numeric
+    def percent_of(n)
+        self.to_f / n.to_f * 100.0
+    end
 end
 yes_count = 0
 no_count = 0
@@ -11,8 +13,8 @@ limit = 500
 def monty_hall(box_number, change)
     prepare_boxes()
     select_box(box_number)
-    open_empty_box(find_box_to_open())
-    change(change)
+    open_box(find_box_to_open())
+    change_choice(change)
     check_answer()
 end
 

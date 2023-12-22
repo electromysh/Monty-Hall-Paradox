@@ -10,7 +10,7 @@ def comment()
 end
 
 def report()
-  p "SHOW YOU A DOOR # #{ @boxes.find_index(@box_to_open) + 1 }. THERE IS #{ @box_to_open.content.class }"
+  p "SHOW YOU A BOX # #{ @boxes.find_index(@box_to_open) + 1 }. THERE IS #{ @box_to_open.content.class }"
 end
 
 def input_valid_number()

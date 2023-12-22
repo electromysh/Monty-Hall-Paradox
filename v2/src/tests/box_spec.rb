@@ -6,14 +6,13 @@ require 'rspec/autorun'
 
 describe Box do
     before(:all) do
-        # let(:box) { Box.new }
         @box = Box.new
         @boxes = prepare_boxes()
         @sheep = Sheep.new()
         @auto = Auto.new()
     end
 
-    context "When testing the Box class methods" do
+    context "When testing the Box class" do
         it "Should initialize the coorect params" do
             expect(@box).to have_attributes(is_open: false, content: nil)
             box2 = Box.new(is_open: true)
@@ -21,53 +20,41 @@ describe Box do
             box3 = Box.new(is_open: true, content: @sheep)
             expect(box3).to have_attributes(is_open: true, content: @sheep)
         end
+    end
 
-        it "Should correctly put stuff in a box" do
-            expect { 
-                @box.put_stuff(@sheep)
-            }.to change{ @box.content }.from(nil).to(@sheep)
-
-            box = Box.new(content: @auto)
-            expect { 
-                box.put_stuff(@sheep)
-            }.to change{ box.content }.from(@auto).to(@sheep)
+    context "When testing actions with boxes" do
+        it "Should correctly prepare boxes" do
+            expect(@boxes.length).to be(3)
+    
+            expect(@boxes).to contain_exactly(
+                an_object_having_attributes(is_open: false, content: Auto),
+                an_object_having_attributes(is_open: false, content: Sheep),
+                an_object_having_attributes(is_open: false, content: Sheep)
+            )
         end
 
-        it "Should open a box" do
-            expect { 
-                @box.open()
-            }.to change{ @box.is_open }.from(false).to(true)
+        it "Should correctly select a box by number" do
+            expect(select_box(1)).to eq @boxes[0]
+            expect(select_box(2)).to eq @boxes[1]
+            expect(select_box(3)).to eq @boxes[2]
         end
 
-        context "When testing interactive with boxes" do
-            it "Should correctly prepare boxes" do
-                expect(@boxes.length).to be(3)
-                # ожидаю что после подготовки все коробки закрыты
-                expect(@boxes.first).to have_attributes(is_open: false)
-                expect(@boxes.last).to have_attributes(is_open: false)
-                # ожидаю что после подготовки у меня одна коробка с авто и две с овцами
+        it "Should open a box that not selected and contains a sheep" do
+            select_box(1)
+            expect(find_box_to_open()).to_not eq @boxes[0]
+            expect(find_box_to_open()).to have_attributes(content: Sheep)
+        end
 
-            end
+        it "Should mark opened box as opened" do
+            box = find_box_to_open()
+            expect{ open_box(box) }.to change{ box.is_open }.from(false).to(true)
+        end
 
-            # ожидаю что при выборе выберется нужная коробка
-            it "Should correctly select a box by number" do
-
-            end
-
-            # ожидаю что при открывании пустой открывается не та которая выбрана и не та где авто
-            it "Should open a box that not selected and is not open" do
-
-            end
-
-            # ожидаю что при открывании коробки коробка помечена как открытая
-            it "Should mark opened box as opened" do
-
-            end
-
-            # ожидаю что при смене выбора откроется коробка которая не вскрыта и которая не выбранная
-            it "Should select a box that not open and doesn't selected yet (when change a box)" do
-
-            end
+        it "Should select a box that not open and doesn't selected yet (when change a box)" do
+            select_box(1)
+            new_selected = change_choice("y")
+            expect(new_selected).to_not eq @boxes[0]
+            expect(new_selected).to have_attributes(is_open: false)
         end
     end
 end
