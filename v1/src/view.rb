@@ -12,6 +12,10 @@ def comment()
     p "YOU CHOOSE A DOOR # #{@selected_door_id + 1}"
 end
 
+def report()
+  p "SHOW YOU A DOOR # #{@opened_door_id + 1}. THERE IS #{@doors[@opened_door_id]}"
+end
+
 def ask()
   p "YOU SHURE? IF YOU CHANGE YOUR CHOICE PRESS y"
 end

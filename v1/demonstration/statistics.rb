@@ -1,5 +1,5 @@
-require_relative '../src/views/view'
-require_relative '../src/controllers/door_controller'
+require_relative '../src/model'
+require_relative '../src/view'
 
 class Numeric
     def percent_of(n)
@@ -17,7 +17,6 @@ def monty_hall(door_number, change)
     select_door(door_number)
     open_empty_door()
     change?(change)
-    check_answer()
     result()
 end
 
