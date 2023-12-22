@@ -3,29 +3,36 @@ require_relative '../models/stuff'
 require_relative '../views/view'
 
 def prepare_boxes()
-    @boxes = Array.new(3){Box.new}
-    @boxes[0].put_stuff(Sheep.new())
-    @boxes[1].put_stuff(Sheep.new())
-    @boxes[2].put_stuff(Auto.new())
-    @boxes.shuffle!
+    @boxes = [
+      Box.new(content: Auto.new()),
+      Box.new(content: Sheep.new()),
+      Box.new(content: Sheep.new())
+    ].shuffle
 end
 
-def select_box(number)
+def is_valid_number(input)
   correct_input_numbers = [1, 2, 3]
-  until correct_input_numbers.member? number do
-    warning()
-    number = gets.to_i
-  end
-  
+  correct_input_numbers.member? input
+end
+
+def is_valid_answer(input)
+  correct_input_answers = ["y", "n"]
+  correct_input_answers.member? input
+end
+
+def select_box(number) 
   @selected_box = @boxes[number - 1] 
 end
 
-def open_empty_box()
-    @box_to_open = @boxes.each.select{|box| box.content.class != Auto && box != @selected_box}.sample
-    @box_to_open.open()
+def find_box_to_open()
+  @box_to_open = @boxes.each.select{|box| box.content.class != Auto && box != @selected_box}.sample
 end
 
-def change?(answer)
+def open_empty_box(box)
+    box.is_open = true
+end
+
+def change(answer)
     if answer == "y"
         box = @boxes.select{|box| !box.is_open && box != @selected_box}[0]
         number_of_box = @boxes.find_index(box) + 1
@@ -34,13 +41,5 @@ def change?(answer)
 end
 
 def check_answer()
-    if @selected_box.content.class == Auto
-      @success = true
-    else
-      @success =false
-    end
-end
-
-def result()
-    @success
+  @selected_box.content.class == Auto
 end

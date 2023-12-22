@@ -1,10 +1,5 @@
-class Stuff
-    def initialize()
-    end
+class Sheep
 end
 
-class Sheep < Stuff
-end
-
-class Auto < Stuff
+class Auto
 end
